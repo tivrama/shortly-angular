@@ -16,7 +16,7 @@ angular.module('shortly', [
       controller: 'AuthController'
     })
     // Your code here
-    //we need to know whats happening here
+
     //links route
     .when('/links', {
       templateUrl: 'app/links/links.html',
