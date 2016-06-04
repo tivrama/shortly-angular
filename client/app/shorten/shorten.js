@@ -8,6 +8,8 @@ angular.module('shortly.shorten', [])
     Links.addLink(link, function(data){
       console.log('data', data)
       $scope.link = data;
+      $scope.aTag = '/api/links/#/' + $scope.link.code;
+      console.log('aTag', $scope.aTag);
     });
   };
   $scope.link = {};
@@ -17,4 +19,12 @@ angular.module('shortly.shorten', [])
   };
 
 
-});
+})
+
+.directive('linkView', function() {
+  var directive = {};
+  // directive.restrict = 'E';
+  directive.template = "<a ng-Href={{aTag}}>{{link.title}}</a>"
+  return directive;
+})
+
