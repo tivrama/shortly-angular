@@ -21,14 +21,14 @@ angular.module('shortly', [
     .when('/links', {
       templateUrl: 'app/links/links.html',
       controller: 'LinksController',
-      authenicate: true
+      authenticate: true
     })
 
     //shorten route
     .when('/shorten', {
       templateUrl: 'app/shorten/shorten.html',
       controller: 'ShortenController',
-      authenicate: true
+      authenticate: true
     })
     //default rout
     .otherwise('/links')
@@ -65,6 +65,7 @@ angular.module('shortly', [
   // and send that token to the server to see if it is a real user or hasn't expired
   // if it's not valid, we then redirect back to signin/signup
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+    console.log('$$route', next.$$route)
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
       $location.path('/signin');
     }

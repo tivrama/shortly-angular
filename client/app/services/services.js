@@ -10,8 +10,8 @@ angular.module('shortly.services', [])
       url: '/api/links',
     })
     .then(function (resp) {
-      console.log('tolken: ', resp);
-      callback(resp.data);
+      
+      callback(resp);
     });
   };
 
@@ -22,12 +22,21 @@ angular.module('shortly.services', [])
       data: info
     })
     .then(function(resp){
-      console.log('post resp', resp)
+      
       callback(resp.data);
     });
   };
 
+  //validate urls
+  service.rValidUrl = /^(?!mailto:)(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?:(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))|localhost)(?::\d{2,5})?(?:\/[^\s]*)?$/i;
+
+  service.isValidUrl = function(url) {
+      return url.match(service.rValidUrl);
+  };
+
+
   return service;
+
 })
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
@@ -76,3 +85,19 @@ angular.module('shortly.services', [])
     signout: signout
   };
 });
+
+
+//addLink new version
+// service.addLink = function(info, callback){
+//     return $http({
+//       method: 'POST',
+//       url: '/api/links',
+//       data: info
+//     })
+//     .then(function(resp){
+//       console.log('post resp', resp)
+//       callback(resp.data);
+//     }, function(resp){
+//       console.log('catch resp', resp);
+//     });
+//   };

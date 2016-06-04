@@ -6,16 +6,18 @@ angular.module('shortly.shorten', [])
   $scope.addLink = function(link) {
     $scope.link.url = $scope.url;
     Links.addLink(link, function(data){
-      console.log('data', data)
       $scope.link = data;
       $scope.aTag = '/api/links/' + $scope.link.code;
-      console.log('aTag', $scope.aTag);
     });
   };
   $scope.link = {};
-  //testing
-  $scope.mkShortLink = function(url) {
-    console.log(url);
+  $scope.isValid = false;
+
+  //validate url
+  
+  $scope.isValidUrl = function(url) {
+    
+    $scope.isValid = Links.isValidUrl(url);
   };
 
 
@@ -23,7 +25,7 @@ angular.module('shortly.shorten', [])
 
 .directive('linkView', function() {
   var directive = {};
-  // directive.restrict = 'E';
+  directive.restrict = 'E';
   directive.template = "<a ng-Href={{aTag}}>{{link.title}}</a>"
   return directive;
 })

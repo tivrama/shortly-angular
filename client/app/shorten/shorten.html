@@ -1,10 +1,12 @@
 <div id='container'>
 <!-- Your code here -->
   Shorten
-<input type="text" placeholder="paste in link here.." ng-model="url" ></input>
-<button ng-click="addLink(link)">Submit</button>
+<input type="text" placeholder="paste in link here.." ng-model="url" ng-keyup="isValidUrl(url)"></input>
+<button ng-if="isValid" ng-click="addLink(link)">Submit</button>
 <div class="link" >
-link:{{link}}  url:{{url}} location{{location}}
+<h2 ng-if="!isValid">Invalid url!!!!</h2>
+<h2 ng-if="isValid">Valid url!!!!</h2>
+link:{{link}}  url:{{url}} location{{location}} valid: {{isValid}}
 <!-- </div >
   <h2>{{ link.title}}<h2>
   <a href={{link.base_url + '/' + link.code}}>link here</a>
