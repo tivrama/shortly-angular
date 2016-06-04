@@ -20,14 +20,18 @@ angular.module('shortly', [
     //links route
     .when('/links', {
       templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
+      controller: 'LinksController',
+      authenicate: true
     })
 
     //shorten route
     .when('/shorten', {
       templateUrl: 'app/shorten/shorten.html',
-      controller: 'ShortenController'
+      controller: 'ShortenController',
+      authenicate: true
     })
+    //default rout
+    .otherwise('/links')
 
 
 

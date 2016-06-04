@@ -8,7 +8,7 @@ angular.module('shortly.shorten', [])
     Links.addLink(link, function(data){
       console.log('data', data)
       $scope.link = data;
-      $scope.aTag = '/api/links/#/' + $scope.link.code;
+      $scope.aTag = '/api/links/' + $scope.link.code;
       console.log('aTag', $scope.aTag);
     });
   };

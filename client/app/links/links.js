@@ -15,3 +15,9 @@ angular.module('shortly.links', [])
 
 })
 
+.directive('linkListView', function() {
+  var directive = {};
+  // directive.restrict = 'E';
+  directive.template = "<a ng-Href={{link.base_url}}/api/links/{{link.code}}>{{link.title}}</a><br>"
+  return directive;
+})

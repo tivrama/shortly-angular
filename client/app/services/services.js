@@ -10,6 +10,7 @@ angular.module('shortly.services', [])
       url: '/api/links',
     })
     .then(function (resp) {
+      console.log('tolken: ', resp);
       callback(resp.data);
     });
   };
